@@ -8,7 +8,7 @@ import logo from '../../assets/logo.svg'
 export function Header () {
 	return (
 		<header className={styles.headerContainer}>
-			<div className={styles.headerContent}>
+			<div className={styles.headerContent + ' container'}>
 				<Image src={logo} alt="ig.news logo"/>
 
 				<nav>
