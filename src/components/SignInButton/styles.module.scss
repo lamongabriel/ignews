@@ -1,0 +1,23 @@
+.signInButton {
+	height: 3rem;
+	border-radius: 3rem;
+	border: 0;
+
+	background: var(--gray-850);
+	color: var(--gray-100);
+
+	font-weight: 700;
+
+	padding: 0 1.5rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+
+	transition: filter 200ms;
+
+	&:hover {
+		filter: brightness(0.8);
+	}
+}
