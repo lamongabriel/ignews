@@ -2,11 +2,16 @@
 
 ```bash
 
+# STRIPE
 $ STRIPE_API_KEY=yourkey
+$ STRIPE_SUCCESS_URL=http://localhost:3000/posts
+$ STRIPE_CANCEL_URL=http://localhost:3000/
 
-GITHUB_ID=idhere
-GITHUB_SECRET=secrethere
+# GITHUB AUTH
+$ GITHUB_ID=idhere
+$ GITHUB_SECRET=secrethere
 
-FAUNADB_KEY=youkeyhere
+# DATABASE ACCESS
+$ FAUNADB_KEY=youkeyhere
 
 ```

@@ -10,6 +10,7 @@ module.exports = {
 		'next/core-web-vitals'
 	],
 	'overrides': [
+
 	],
 	'parser': '@typescript-eslint/parser',
 	'parserOptions': {
@@ -32,6 +33,7 @@ module.exports = {
 		'semi': [
 			'error',
 			'never'
-		]
+		],
+		'import/no-anonymous-default-export': 'off'
 	}
 }
