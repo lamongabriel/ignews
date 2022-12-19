@@ -4,6 +4,7 @@
 
 # STRIPE
 $ STRIPE_API_KEY=yourkey
+$ NEXT_PUBLIC_STRIPE_PUBLIC_KEY=yourkey
 $ STRIPE_SUCCESS_URL=http://localhost:3000/posts
 $ STRIPE_CANCEL_URL=http://localhost:3000/
 
