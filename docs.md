@@ -19,6 +19,15 @@ $ FAUNADB_KEY=youkeyhere
 PRISMIC_ACCESS_TOKEN=tokenhere
 ```
 
+## update sm.json
+```bash
+# You must set to your prismic API url.
+  { "apiEndpoint": "https://lamongabriel-ignews.prismic.io/api/v2",
+	...
+	}
+
+```
+
 prismic cms
 nextjs
 stripe payment
