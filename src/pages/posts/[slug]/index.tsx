@@ -8,6 +8,7 @@ import { Header } from '../../../components/Header'
 import styles from './styles.module.scss'
 import { createClient } from '../../../../prismicio'
 import { RichText } from 'prismic-dom'
+import { Session } from 'next-auth'
 
 interface PostProps {
 	post: {
@@ -39,7 +40,23 @@ export default function Post ({ post }: PostProps) {
 
 export const getServerSideProps:GetServerSideProps = async ({ req, params }) => {
 
-	// const session = await getSession({ req })
+	interface SessionWithAuthentication extends Session {
+		activeSubscription: {
+			data: {
+				status: string
+			}
+		}
+	}
+
+	const session = await getSession({ req }) as SessionWithAuthentication
+	if(!session.activeSubscription){
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		}
+	}
 
 	const { slug } = params as { slug: string }
 

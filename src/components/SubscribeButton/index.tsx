@@ -1,20 +1,33 @@
+import { Session } from 'next-auth'
 import { useSession, signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import { api } from '../../services/api'
 import { getStripeJs } from '../../services/stripe-js'
 import styles from './styles.module.scss'
 
-interface SubscribeButtonProps {
-	priceId: string
+interface SessionWithAuthentication extends Session {
+	activeSubscription: {
+		data: {
+			status: string
+		}
+	}
 }
 
-export function SubscribeButton ({priceId}: SubscribeButtonProps) {
+export function SubscribeButton () {
 
-	const { status } = useSession()
-
+	const { status, data } = useSession()
+	const router = useRouter()
 
 	async function handleSubscribe () {
+		const auth = data as SessionWithAuthentication
+
 		if(status !== 'authenticated'){
 			return signIn('github')
+		}
+
+		if(auth?.activeSubscription) {
+			router.push('/posts')
+			return
 		}
 
 		try {
@@ -29,7 +42,7 @@ export function SubscribeButton ({priceId}: SubscribeButtonProps) {
 			await stripe.redirectToCheckout({sessionId})
 		}
 		catch (err){
-			console.log(err)
+			return
 		}
 	}
 

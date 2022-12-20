@@ -32,15 +32,18 @@ export default async function (req: NextApiRequest, res: NextApiResponse){
 				email: session.user.email
 			})
 
-			await fauna.query(
-				q.Update(q.Ref(q.Collection('users'), user.ref.id), {
-					data: {
-						stripe_customer_id: stripeCustomer.id
-					}
-				})
-			)
-
-			customerId = stripeCustomer.id
+			try{
+				await fauna.query(
+					q.Update(q.Ref(q.Collection('users'), user.ref.id), {
+						data: {
+							stripe_customer_id: stripeCustomer.id
+						}
+					})
+				)
+				customerId = stripeCustomer.id
+			} catch {
+				return
+			}
 		}
 
 		const stripeCheckoutSession = await stripe.checkout.sessions.create({
