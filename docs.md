@@ -15,4 +15,11 @@ $ GITHUB_SECRET=secrethere
 # DATABASE ACCESS
 $ FAUNADB_KEY=youkeyhere
 
+# PRISMIC CMS
+PRISMIC_ACCESS_TOKEN=tokenhere
 ```
+
+prismic cms
+nextjs
+stripe payment
+faunadb
