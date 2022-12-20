@@ -1,0 +1,43 @@
+.container {
+	max-width: 728px;
+	margin: 5rem auto;
+
+	h1 {
+		font-weight: 900;
+		font-size: 3.375rem;
+		line-height: 3.75rem;
+		color: var(--white);
+	}
+
+	time {
+		display: block;
+		margin: 2rem 0;
+		color: var(--gray-300);
+	}
+
+	div {
+		color: var(--gray-100);
+		font-weight: 400;
+		font-size: 1.125rem;
+		line-height: 1.875rem;
+
+		p, ul {
+			margin: 1.5rem 0;
+		}
+
+		ul {
+			li {
+				margin: 0.5rem 0;
+
+				&::before {
+					content: "\2022";
+					color: var(--yellow-500);
+					font-weight: bold;
+					display: inline-block;
+					width: 1rem;
+					margin-right: 1.5rem;
+				}
+			}
+		}
+	}
+}

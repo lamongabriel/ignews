@@ -7,6 +7,7 @@ import { createClient } from '../../../prismicio'
 import { RichText } from 'prismic-dom'
 
 import styles from './styles.module.scss'
+import Link from 'next/link'
 
 interface Post {
 	slug: string
@@ -20,7 +21,6 @@ interface PostsProps {
 }
 
 export default function Posts ({ posts }: PostsProps) {
-	console.log(posts)
 	return (
 		<>
 			<Head>
@@ -33,11 +33,11 @@ export default function Posts ({ posts }: PostsProps) {
 				<div className={styles.posts}>
 					{
 						posts.map(post => (
-							<a key={post.slug}>
+							<Link href={`/posts/${post.slug}`} key={post.slug}>
 								<time>{post.updatedAt}</time>
 								<strong>{post.title}</strong>
 								<p>{post.exercpt}</p>
-							</a>
+							</Link>
 						))
 					}
 				</div>
