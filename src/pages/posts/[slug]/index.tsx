@@ -8,7 +8,6 @@ import { Header } from '../../../components/Header'
 import styles from './styles.module.scss'
 import { createClient } from '../../../../prismicio'
 import { RichText } from 'prismic-dom'
-import { Session } from 'next-auth'
 
 interface PostProps {
 	post: {
@@ -40,43 +39,45 @@ export default function Post ({ post }: PostProps) {
 
 export const getServerSideProps:GetServerSideProps = async ({ req, params }) => {
 
-	interface SessionWithAuthentication extends Session {
-		activeSubscription: {
-			data: {
-				status: string
+	try {
+
+		const session = await getSession({ req })
+		if(!session?.activeSubscription){
+			return {
+				redirect: {
+					destination: '/',
+					permanent: false
+				}
 			}
 		}
-	}
 
-	const session = await getSession({ req }) as SessionWithAuthentication
-	if(!session.activeSubscription){
+		const { slug } = params as { slug: string }
+
+		const client = createClient()
+		const response = await client.getByUID('post', slug)
+
+		const post = {
+			slug,
+			title: RichText.asText(response.data.title),
+			content: RichText.asHtml(response.data.content),
+			updatedAt: new Date(response.last_publication_date).toLocaleDateString('en-US', {
+				day: '2-digit',
+				month: 'long',
+				year: 'numeric'
+			})
+		}
+
+		return {
+			props: {
+				post
+			}
+		}
+	} catch {
 		return {
 			redirect: {
-				destination: '/',
-				permanent: false
+				destination: '/404',
+				permanent: true
 			}
-		}
-	}
-
-	const { slug } = params as { slug: string }
-
-	const client = createClient()
-	const response = await client.getByUID('post', slug)
-
-	const post = {
-		slug,
-		title: RichText.asText(response.data.title),
-		content: RichText.asHtml(response.data.content),
-		updatedAt: new Date(response.last_publication_date).toLocaleDateString('en-US', {
-			day: '2-digit',
-			month: 'long',
-			year: 'numeric'
-		})
-	}
-
-	return {
-		props: {
-			post
 		}
 	}
 }

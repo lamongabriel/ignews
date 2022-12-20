@@ -1,17 +1,9 @@
-import { Session } from 'next-auth'
 import { useSession, signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { api } from '../../services/api'
 import { getStripeJs } from '../../services/stripe-js'
 import styles from './styles.module.scss'
 
-interface SessionWithAuthentication extends Session {
-	activeSubscription: {
-		data: {
-			status: string
-		}
-	}
-}
 
 export function SubscribeButton () {
 
@@ -19,13 +11,12 @@ export function SubscribeButton () {
 	const router = useRouter()
 
 	async function handleSubscribe () {
-		const auth = data as SessionWithAuthentication
 
 		if(status !== 'authenticated'){
 			return signIn('github')
 		}
 
-		if(auth?.activeSubscription) {
+		if(data?.activeSubscription) {
 			router.push('/posts')
 			return
 		}
