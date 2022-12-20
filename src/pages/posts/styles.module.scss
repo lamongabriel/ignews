@@ -1,0 +1,49 @@
+.posts {
+	max-width: 728px;
+	margin: 5rem auto 0;
+
+	time {
+		color: var(--gray-300);
+		line-height: 1.625rem;
+		display: block;
+		margin-bottom: 1rem;
+	}
+
+	a {
+		display: block;
+		padding: 2rem 0;
+		cursor: pointer;
+
+		transition: transform 200ms;
+
+		strong {
+			display: block;
+
+			font-size: 1.5rem;
+			line-height: 2rem;
+			font-weight: 700;
+
+			transition: color 200ms;
+
+			margin-bottom: 0.5rem;
+		}
+
+		p {
+			color: var(--gray-300);
+			line-height: 1.625rem;
+		}
+
+		& +	a{
+			border-top: solid 1px var(--gray-700);
+		}
+
+		&:hover {
+
+			transform: scale(1.05);
+
+			strong {
+				color: var(--yellow-500);
+			}
+		}
+	}
+}
