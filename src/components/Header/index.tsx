@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import { SignInButton } from '../SignInButton'
 
@@ -12,8 +13,12 @@ export function Header () {
 				<Image src={logo} alt="ig.news logo"/>
 
 				<nav>
-					<a href='' className={styles.active}>Home</a>
-					<a href=''>Posts</a>
+					<Link href='/' className={styles.active}>
+						Home
+					</Link>
+					<Link href='/posts' prefetch>
+						Posts
+					</Link>
 				</nav>
 
 				<SignInButton />
