@@ -74,7 +74,7 @@ export const getStaticProps:GetStaticProps = async ({ params }) => {
 		const preview = {
 			slug,
 			title: RichText.asText(response.data.title),
-			content: RichText.asHtml(response.data.content.slice(0, 3)),
+			content: RichText.asHtml(response.data.content.slice(0, 5)),
 			updatedAt: new Date(response.last_publication_date).toLocaleDateString('en-US', {
 				day: '2-digit',
 				month: 'long',
@@ -85,7 +85,8 @@ export const getStaticProps:GetStaticProps = async ({ params }) => {
 		return {
 			props: {
 				preview
-			}
+			},
+			revalidate: 60 * 60, // 1hr
 		}
 	} catch {
 		return {

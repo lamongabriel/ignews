@@ -42,16 +42,18 @@ export const getServerSideProps:GetServerSideProps = async ({ req, params }) => 
 	try {
 
 		const session = await getSession({ req })
+
+		const { slug } = params as { slug: string }
+
 		if(!session?.activeSubscription){
 			return {
 				redirect: {
-					destination: '/',
+					destination: `/posts/preview/${slug}`,
 					permanent: false
 				}
 			}
 		}
 
-		const { slug } = params as { slug: string }
 
 		const client = createClient()
 		const response = await client.getByUID('post', slug)
