@@ -27,8 +27,3 @@ PRISMIC_ACCESS_TOKEN=tokenhere
 	}
 
 ```
-
-prismic cms
-nextjs
-stripe payment
-faunadb

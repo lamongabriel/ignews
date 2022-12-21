@@ -9,6 +9,7 @@
     "lint": "next lint",
     "slicemachine": "start-slicemachine"
   },
+	"license": "MIT",
   "dependencies": {
     "@prismicio/client": "^6.7.3",
     "@prismicio/helpers": "^2.3.8",
