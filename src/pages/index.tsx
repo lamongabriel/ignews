@@ -35,7 +35,7 @@ export default function Home({product}: HomeProps) {
 						</p>
 					</div>
 
-					<SubscribeButton priceId={product.priceId} />
+					<SubscribeButton />
 				</section>
 
 				<Image src={womanImage} alt='Drawing of a woman on a chair' />

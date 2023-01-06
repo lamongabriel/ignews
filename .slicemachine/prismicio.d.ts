@@ -49,4 +49,5 @@ declare module "@prismicio/client" {
     namespace Content {
         export type { PostDocumentData, PostDocument, AllDocumentTypes };
     }
+
 }

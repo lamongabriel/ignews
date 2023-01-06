@@ -21,6 +21,7 @@ export const authOptions: AuthOptions = {
 		}),
 	],
 	callbacks: {
+		// @ts-expect-error Interface extension is not being recognized
 		async session({ session }) {
 
 			if(!session?.user?.email) return session
