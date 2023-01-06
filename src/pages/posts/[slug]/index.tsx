@@ -3,11 +3,10 @@ import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 
-import { Header } from '../../../components/Header'
-
 import styles from './styles.module.scss'
 import { createClient } from '../../../../prismicio'
 import { RichText } from 'prismic-dom'
+import { Layout } from '../../../components/Layout'
 
 interface PostProps {
 	post: {
@@ -25,14 +24,15 @@ export default function Post ({ post }: PostProps) {
 			<Head>
 				<title>{`${post.title} | ig.news`}</title>
 			</Head>
-			<Header />
-			<article className={styles.container}>
-				<h1>{post.title}</h1>
-				<time>{post.updatedAt}</time>
-				<div dangerouslySetInnerHTML={{
-					__html: post.content
-				}} />
-			</article>
+			<Layout>
+				<article className={styles.container}>
+					<h1>{post.title}</h1>
+					<time>{post.updatedAt}</time>
+					<div dangerouslySetInnerHTML={{
+						__html: post.content
+					}} />
+				</article>
+			</Layout>
 		</>
 	)
 }
@@ -53,7 +53,6 @@ export const getServerSideProps:GetServerSideProps = async ({ req, params }) => 
 				}
 			}
 		}
-
 
 		const client = createClient()
 		const response = await client.getByUID('post', slug)

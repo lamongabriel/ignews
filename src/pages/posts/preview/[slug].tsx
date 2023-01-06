@@ -4,14 +4,13 @@ import { useSession } from 'next-auth/react'
 
 import { GetStaticPaths, GetStaticProps } from 'next'
 
-import { Header } from '../../../components/Header'
-
 import { createClient } from '../../../../prismicio'
 import { RichText } from 'prismic-dom'
 
 import styles from '../[slug]/styles.module.scss'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { Layout } from '../../../components/Layout'
 
 interface PreviewProps {
 	preview: {
@@ -38,19 +37,21 @@ export default function Preview ({ preview }: PreviewProps) {
 			<Head>
 				<title>{`${preview.title} | ig.news`}</title>
 			</Head>
-			<Header />
-			<article className={`${styles.container} ${styles.previewContainer}`}>
-				<h1>{preview.title}</h1>
-				<time>{preview.updatedAt}</time>
-				<div dangerouslySetInnerHTML={{
-					__html: preview.content
-				}} />
-				<Link href='/' className={styles.continueReading}>
-					<button>
-						Wanna continue reading? <span>Subscribe now</span> 🤗
-					</button>
-				</Link>
-			</article>
+
+			<Layout>
+				<article className={`${styles.container} ${styles.previewContainer}`}>
+					<h1>{preview.title}</h1>
+					<time>{preview.updatedAt}</time>
+					<div dangerouslySetInnerHTML={{
+						__html: preview.content
+					}} />
+					<Link href='/' className={styles.continueReading}>
+						<button>
+							Wanna continue reading? <span>Subscribe now</span> 🤗
+						</button>
+					</Link>
+				</article>
+			</Layout>
 		</>
 	)
 }

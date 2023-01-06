@@ -1,13 +1,12 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 
-import { Header } from '../../components/Header'
-
 import { createClient } from '../../../prismicio'
 import { RichText } from 'prismic-dom'
 
 import styles from './styles.module.scss'
 import Link from 'next/link'
+import { Layout } from '../../components/Layout'
 
 interface Post {
 	slug: string
@@ -26,10 +25,7 @@ export default function Posts ({ posts }: PostsProps) {
 			<Head>
 				<title>Posts | ig.news</title>
 			</Head>
-			<main>
-
-				<Header />
-
+			<Layout>
 				<div className={styles.posts}>
 					{
 						posts.map(post => (
@@ -41,7 +37,7 @@ export default function Posts ({ posts }: PostsProps) {
 						))
 					}
 				</div>
-			</main>
+			</Layout>
 		</>
 	)
 }
