@@ -4,6 +4,7 @@
 }
 
 .headerContent {
+	position: relative;
   height: 5rem;
 	max-width: 1120px;
   margin: 0 auto;
@@ -11,12 +12,15 @@
 
   display: flex;
   align-items: center;
+	justify-content: space-between;
 
   nav {
     margin-left: 5rem;
     height: 5rem;
 
     display: flex;
+		align-items: center;
+		flex: 1;
     gap: 2rem;
 
     a {
@@ -50,9 +54,40 @@
 				background: var(--yellow-500);
 			}
     }
+
+		>button {
+			margin-left: auto;
+		}
   }
 
-	>button {
-		margin-left: auto;
+	.menuButton {
+		display: none;
+		background-color: transparent;
+	}
+
+	@media (max-width: 991px){
+		nav {
+			flex-direction: column;
+			position: absolute;
+			right: 0;
+			top: 5rem;
+			padding: 2rem;
+
+			background-color: #202020;
+			height: 100vh;
+
+			border-top-left-radius: 2rem;
+
+			display: none;
+		}
+
+		nav.navOpen{
+			transform: translateX(0);
+			display: flex;
+		}
+
+		.menuButton {
+			display: block;
+		}
 	}
 }
