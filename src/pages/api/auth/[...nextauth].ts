@@ -20,6 +20,7 @@ export const authOptions: AuthOptions = {
 			},
 		}),
 	],
+	secret: process.env.NEXTAUTH_SECRET as string,
 	callbacks: {
 		// @ts-expect-error Interface extension is not being recognized
 		async session({ session }) {
