@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 
 import { createClient } from '../../../prismicio'
@@ -42,7 +42,7 @@ export default function Posts ({ posts }: PostsProps) {
 	)
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
 	const client = createClient()
 	const response = await client.getAllByType('post')
 
